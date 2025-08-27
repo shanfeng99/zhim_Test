@@ -1,0 +1,48 @@
+C51 COMPILER V8.08   COMM_595165                                                           02/26/2016 02:07:20 PAGE 1   
+
+
+C51 COMPILER V8.08, COMPILATION OF MODULE COMM_595165
+OBJECT MODULE PLACED IN ..\OUTPUT\comm_595165.obj
+COMPILER INVOKED BY: D:\Software\keil\C51\BIN\C51.EXE ..\USER\comm_595165.c BROWSE DEBUG OBJECTEXTEND PRINT(..\OUTPUT\co
+                    -mm_595165.lst) OBJECT(..\OUTPUT\comm_595165.obj)
+
+line level    source
+
+   1          #include "TP.h"
+   2          #include "io.h"
+   3          
+   4          /*==========================================================================================
+   5          函数: 
+   6                  void 595_165_Init(void)                          
+   7          描述:   
+   8                  指定口输出
+   9          参数: 
+  10                  
+  11          返回: 
+  12          */
+  13          void comm_595165(void){
+  14   1      
+  15   1              
+  16   1              
+  17   1              
+  18   1      }       
+  19          
+  20          
+  21          
+  22          
+  23          
+  24          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =      1    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

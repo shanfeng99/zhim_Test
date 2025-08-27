@@ -1,0 +1,7 @@
+"..\OUTPUT\io.obj",
+"..\OUTPUT\led.obj",
+"..\OUTPUT\main.obj",
+"..\OUTPUT\system.obj",
+"..\OUTPUT\expand.obj" 
+TO "..\OUTPUT\STC15F2K60S2" 
+PRINT("..\OUTPUT\STC15F2K60S2.m51") RAMSIZE(256) 

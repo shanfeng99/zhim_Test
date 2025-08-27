@@ -1,0 +1,240 @@
+C51 COMPILER V9.59.0.0   SYSTEM                                                            08/26/2025 17:58:27 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE SYSTEM
+OBJECT MODULE PLACED IN ..\OUTPUT\system.obj
+COMPILER INVOKED BY: D:\keil\C51\BIN\C51.EXE ..\USER\system.c LARGE OPTIMIZE(9,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(..
+                    -\OUTPUT\system.lst) TABS(2) OBJECT(..\OUTPUT\system.obj)
+
+line level    source
+
+   1          #include "TP.h"
+   2          #include "system.h"
+   3          // 函数: void GPIO_Config(void)
+   4          // 描述: IO口初始化
+   5          // 参数: 
+   6          // 返回: 
+   7          // 版本: V1.0 2013-11-06 
+   8          //---------------------------------------------------------------------------
+   9          #define GPIO_PullUp   0 //上拉准双向口
+  10          #define GPIO_HighZ    1 //浮空输入
+  11          #define GPIO_OUT_OD   2 //开漏输出
+  12          #define GPIO_OUT_PP   3 //推挽输出
+  13          
+  14          #define GPIO_Pin_0    0x01  //IO引脚 Px.0
+  15          #define GPIO_Pin_1    0x02  //IO引脚 Px.1
+  16          #define GPIO_Pin_2    0x04  //IO引脚 Px.2
+  17          #define GPIO_Pin_3    0x08  //IO引脚 Px.3
+  18          #define GPIO_Pin_4    0x10  //IO引脚 Px.4
+  19          #define GPIO_Pin_5    0x20  //IO引脚 Px.5
+  20          #define GPIO_Pin_6    0x40  //IO引脚 Px.6
+  21          #define GPIO_Pin_7    0x80  //IO引脚 Px.7
+  22          #define GPIO_Pin_All  0xFF  //IO所有引脚
+  23            
+  24          #define GPIO_P0     0   
+  25          #define GPIO_P1     1
+  26          #define GPIO_P2     2
+  27          #define GPIO_P3     3
+  28          #define GPIO_P4     4
+  29          #define GPIO_P5     5
+  30          
+  31          typedef struct
+  32          {
+  33            u8  Mode;   //IO模式,     GPIO_PullUp,GPIO_HighZ,GPIO_OUT_OD,GPIO_OUT_PP
+  34            u8  Pin;    //要设置的端口  
+  35          } GPIO_InitTypeDef;
+  36          
+  37          //========================================================================
+  38          // 函数: u8 GPIO_Inilize(u8 GPIO, GPIO_InitTypeDef *GPIOx)
+  39          // 描述: 初始化IO口.
+  40          // 参数: GPIOx: 结构参数,请参考timer.h里的定义.
+  41          // 返回: 成功返回0, 空操作返回1,错误返回2.
+  42          // 版本: V1.0, 2012-10-22
+  43          //========================================================================
+  44          u8  GPIO_Inilize(u8 GPIO, GPIO_InitTypeDef *GPIOx)
+  45          {
+  46   1        if(GPIO > GPIO_P5)        return 1; //空操作
+  47   1        if(GPIOx->Mode > GPIO_OUT_PP) return 2; //错误
+  48   1        if(GPIO == GPIO_P0)
+  49   1        {
+  50   2          if(GPIOx->Mode == GPIO_PullUp)    P0M1 &= ~GPIOx->Pin,  P0M0 &= ~GPIOx->Pin;   //上拉准双向口
+  51   2          if(GPIOx->Mode == GPIO_HighZ)     P0M1 |=  GPIOx->Pin,  P0M0 &= ~GPIOx->Pin;   //浮空输入
+  52   2          if(GPIOx->Mode == GPIO_OUT_OD)    P0M1 |=  GPIOx->Pin,  P0M0 |=  GPIOx->Pin;   //开漏输出
+  53   2          if(GPIOx->Mode == GPIO_OUT_PP)    P0M1 &= ~GPIOx->Pin,  P0M0 |=  GPIOx->Pin;   //推挽输出
+  54   2        }
+C51 COMPILER V9.59.0.0   SYSTEM                                                            08/26/2025 17:58:27 PAGE 2   
+
+  55   1        if(GPIO == GPIO_P1)
+  56   1        {
+  57   2          if(GPIOx->Mode == GPIO_PullUp)    P1M1 &= ~GPIOx->Pin,  P1M0 &= ~GPIOx->Pin;   //上拉准双向口
+  58   2          if(GPIOx->Mode == GPIO_HighZ)   P1M1 |=  GPIOx->Pin,  P1M0 &= ~GPIOx->Pin;   //浮空输入
+  59   2          if(GPIOx->Mode == GPIO_OUT_OD)    P1M1 |=  GPIOx->Pin,  P1M0 |=  GPIOx->Pin;   //开漏输出
+  60   2          if(GPIOx->Mode == GPIO_OUT_PP)    P1M1 &= ~GPIOx->Pin,  P1M0 |=  GPIOx->Pin;   //推挽输出
+  61   2        }
+  62   1        if(GPIO == GPIO_P2)
+  63   1        {
+  64   2          if(GPIOx->Mode == GPIO_PullUp)    P2M1 &= ~GPIOx->Pin,  P2M0 &= ~GPIOx->Pin;   //上拉准双向口
+  65   2          if(GPIOx->Mode == GPIO_HighZ)   P2M1 |=  GPIOx->Pin,  P2M0 &= ~GPIOx->Pin;   //浮空输入
+  66   2          if(GPIOx->Mode == GPIO_OUT_OD)    P2M1 |=  GPIOx->Pin,  P2M0 |=  GPIOx->Pin;   //开漏输出
+  67   2          if(GPIOx->Mode == GPIO_OUT_PP)    P2M1 &= ~GPIOx->Pin,  P2M0 |=  GPIOx->Pin;   //推挽输出
+  68   2        }
+  69   1        if(GPIO == GPIO_P3)
+  70   1        {
+  71   2          if(GPIOx->Mode == GPIO_PullUp)    P3M1 &= ~GPIOx->Pin,  P3M0 &= ~GPIOx->Pin;   //上拉准双向口
+  72   2          if(GPIOx->Mode == GPIO_HighZ)   P3M1 |=  GPIOx->Pin,  P3M0 &= ~GPIOx->Pin;   //浮空输入
+  73   2          if(GPIOx->Mode == GPIO_OUT_OD)    P3M1 |=  GPIOx->Pin,  P3M0 |=  GPIOx->Pin;   //开漏输出
+  74   2          if(GPIOx->Mode == GPIO_OUT_PP)    P3M1 &= ~GPIOx->Pin,  P3M0 |=  GPIOx->Pin;   //推挽输出
+  75   2        }
+  76   1        if(GPIO == GPIO_P4)
+  77   1        {
+  78   2          if(GPIOx->Mode == GPIO_PullUp)    P4M1 &= ~GPIOx->Pin,  P4M0 &= ~GPIOx->Pin;   //上拉准双向口
+  79   2          if(GPIOx->Mode == GPIO_HighZ)   P4M1 |=  GPIOx->Pin,  P4M0 &= ~GPIOx->Pin;   //浮空输入
+  80   2          if(GPIOx->Mode == GPIO_OUT_OD)    P4M1 |=  GPIOx->Pin,  P4M0 |=  GPIOx->Pin;   //开漏输出
+  81   2          if(GPIOx->Mode == GPIO_OUT_PP)    P4M1 &= ~GPIOx->Pin,  P4M0 |=  GPIOx->Pin;   //推挽输出
+  82   2        }
+  83   1        if(GPIO == GPIO_P5)
+  84   1        {
+  85   2          if(GPIOx->Mode == GPIO_PullUp)    P5M1 &= ~GPIOx->Pin,  P5M0 &= ~GPIOx->Pin;   //上拉准双向口
+  86   2          if(GPIOx->Mode == GPIO_HighZ)   P5M1 |=  GPIOx->Pin,  P5M0 &= ~GPIOx->Pin;   //浮空输入
+  87   2          if(GPIOx->Mode == GPIO_OUT_OD)    P5M1 |=  GPIOx->Pin,  P5M0 |=  GPIOx->Pin;   //开漏输出
+  88   2          if(GPIOx->Mode == GPIO_OUT_PP)    P5M1 &= ~GPIOx->Pin,  P5M0 |=  GPIOx->Pin;   //推挽输出
+  89   2        }
+  90   1        return 0; //成功
+  91   1      }
+  92          
+  93          
+  94          /*==========================================================================================
+  95          函数 
+  96            void IO_Init(void)
+  97          描述 
+  98            接口初始化
+  99          参数 
+ 100            
+ 101          返回  
+ 102          */
+ 103          void IO_Init(void)
+ 104          {
+ 105   1        GPIO_InitTypeDef  GPIO_InitStructure;         //结构体定义
+ 106   1      //  GPIO_InitStructure.Pin  = GPIO_Pin_0
+ 107   1      //              | GPIO_Pin_1
+ 108   1      //              | GPIO_Pin_3
+ 109   1      //              | GPIO_Pin_4
+ 110   1      //              | GPIO_Pin_5
+ 111   1      //              | GPIO_Pin_6
+ 112   1      //              | GPIO_Pin_7;         //选定口
+ 113   1      //  GPIO_InitStructure.Mode = GPIO_PullUp;          //上拉准双向口
+ 114   1      //  GPIO_Inilize(GPIO_P0,&GPIO_InitStructure);        //初始化  
+ 115   1      //  P00 = 1;
+ 116   1      //  P01 = 1;
+C51 COMPILER V9.59.0.0   SYSTEM                                                            08/26/2025 17:58:27 PAGE 3   
+
+ 117   1      //  P03 = 1;
+ 118   1      //  P04 = 1;
+ 119   1      //  P05 = 1;
+ 120   1      //  P06 = 1;
+ 121   1      //  P07 = 1;
+ 122   1        GPIO_InitStructure.Pin  = GPIO_Pin_0
+ 123   1                             | GPIO_Pin_1
+ 124   1                             | GPIO_Pin_2
+ 125   1                             | GPIO_Pin_3
+ 126   1                             | GPIO_Pin_4
+ 127   1                             | GPIO_Pin_5
+ 128   1                             | GPIO_Pin_6
+ 129   1                             | GPIO_Pin_7;          //选定口
+ 130   1        GPIO_InitStructure.Mode = GPIO_PullUp;          //上拉准双向口
+ 131   1        GPIO_Inilize(GPIO_P1,&GPIO_InitStructure);        //初始化  
+ 132   1        P10 = 1;
+ 133   1        P11 = 1;
+ 134   1        P12 = 1;
+ 135   1        P13 = 1;
+ 136   1        P14 = 1;
+ 137   1        P15 = 1;
+ 138   1        P16 = 1;
+ 139   1        P17 = 1;
+ 140   1        GPIO_InitStructure.Pin  = GPIO_Pin_0
+ 141   1                             | GPIO_Pin_1
+ 142   1                             | GPIO_Pin_2
+ 143   1                             | GPIO_Pin_3
+ 144   1                             | GPIO_Pin_4
+ 145   1                             | GPIO_Pin_5
+ 146   1                             | GPIO_Pin_6
+ 147   1                             | GPIO_Pin_7;          //选定口
+ 148   1        GPIO_InitStructure.Mode = GPIO_PullUp;          //上拉准双向口
+ 149   1        GPIO_Inilize(GPIO_P2,&GPIO_InitStructure);        //初始化  
+ 150   1        P20 = 1;
+ 151   1        P21 = 1;
+ 152   1        P22 = 1;
+ 153   1        P23 = 1;
+ 154   1        P24 = 1;
+ 155   1        P25 = 1;
+ 156   1        P26 = 1;
+ 157   1        P27 = 1;  
+ 158   1        GPIO_InitStructure.Pin  = GPIO_Pin_0
+ 159   1                             | GPIO_Pin_1
+ 160   1                             | GPIO_Pin_2
+ 161   1                             | GPIO_Pin_3
+ 162   1                             | GPIO_Pin_4
+ 163   1                             | GPIO_Pin_5
+ 164   1                             | GPIO_Pin_6
+ 165   1                             | GPIO_Pin_7;          //选定口
+ 166   1        GPIO_InitStructure.Mode = GPIO_PullUp;          //上拉准双向口
+ 167   1        GPIO_Inilize(GPIO_P3,&GPIO_InitStructure);        //初始化  
+ 168   1        P30 = 1;
+ 169   1        P31 = 1;
+ 170   1        P32 = 1;
+ 171   1        P33 = 1;
+ 172   1        P34 = 1;
+ 173   1        P35 = 1;
+ 174   1        P36 = 1;
+ 175   1        P37 = 1;  
+ 176   1        GPIO_InitStructure.Pin  = GPIO_Pin_4
+ 177   1                             | GPIO_Pin_5;          //选定口
+ 178   1        GPIO_InitStructure.Mode = GPIO_PullUp;          //上拉准双向口
+C51 COMPILER V9.59.0.0   SYSTEM                                                            08/26/2025 17:58:27 PAGE 4   
+
+ 179   1        GPIO_Inilize(GPIO_P5,&GPIO_InitStructure);        //初始化  
+ 180   1        P54 = 1;
+ 181   1        P55 = 1;
+ 182   1      } 
+ 183          /*==========================================================================================
+ 184          函数 
+ 185            void Timer_Init(void)
+ 186          描述 
+ 187          
+ 188          参数 
+ 189            
+ 190          返回  
+ 191          */
+ 192          void Timer_Init(void)
+ 193          {
+ 194   1        //定时器0
+ 195   1        AUXR &= 0x7F; //定时器时钟12T模式
+ 196   1        TMOD &= 0xF0; //设置定时器模式
+ 197   1        TL0 = 0xE5;   //设置定时初值
+ 198   1        TH0 = 0xBE;   //设置定时初值
+ 199   1        TF0 = 0;    //清除TF0标志
+ 200   1        TR0 = 1;    //定时器0开始计时
+ 201   1        PT0 = 1;    //定时器0最高优先级
+ 202   1      //  //定时器1
+ 203   1      //  AUXR &= 0xBF; //定时器时钟12T模式,16位自动重载
+ 204   1      //  TMOD &= 0x0F; //设置定时器模式
+ 205   1      //  TL1 = 0xE5;   //设置定时初值
+ 206   1      //  TH1 = 0xBE;   //设置定时初值
+ 207   1      //  TF1 = 0;    //清除TF1标志
+ 208   1      //  TR1 = 1;    //定时器1开始计时 
+ 209   1      }
+ 210          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    539    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----       2
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,287 @@
+C51 COMPILER V9.59.0.0   IO                                                                08/26/2025 17:58:26 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE IO
+OBJECT MODULE PLACED IN ..\OUTPUT\io.obj
+COMPILER INVOKED BY: D:\keil\C51\BIN\C51.EXE ..\USER\io.c LARGE OPTIMIZE(9,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(..\OUT
+                    -PUT\io.lst) TABS(2) OBJECT(..\OUTPUT\io.obj)
+
+line level    source
+
+   1          #include "TP.h"
+   2          #include "io.h"
+   3          
+   4          /*==========================================================================================
+   5          函数: 
+   6            u8 Input(u8 b_PinNum)        
+   7          描述:   
+   8            指定口输入
+   9          参数: 
+  10            - b_PinNum        端口号
+  11              - 0x00        <>P00 
+  12              - 0x01        <>P01
+  13              - 0x02        <>P02
+  14              - ...
+  15          返回: - 0           低电平触发
+  16          */
+  17          u8 Input(u8 b_PinNum){
+  18   1        u8 b_ReturnDat = 1;
+  19   1           if(b_PinNum == 0x00){if(P00 == 0){b_ReturnDat = 0;}}
+  20   1        else if(b_PinNum == 0x01){if(P01 == 0){b_ReturnDat = 0;}}
+  21   1        else if(b_PinNum == 0x02){if(P02 == 0){b_ReturnDat = 0;}}
+  22   1        else if(b_PinNum == 0x03){if(P03 == 0){b_ReturnDat = 0;}}
+  23   1        else if(b_PinNum == 0x04){if(P04 == 0){b_ReturnDat = 0;}}
+  24   1        else if(b_PinNum == 0x05){if(P05 == 0){b_ReturnDat = 0;}}
+  25   1        else if(b_PinNum == 0x06){if(P06 == 0){b_ReturnDat = 0;}}
+  26   1        else if(b_PinNum == 0x07){if(P07 == 0){b_ReturnDat = 0;}}
+  27   1        else if(b_PinNum == 0x10){if(P10 == 0){b_ReturnDat = 0;}}
+  28   1        else if(b_PinNum == 0x11){if(P11 == 0){b_ReturnDat = 0;}}
+  29   1        else if(b_PinNum == 0x12){if(P12 == 0){b_ReturnDat = 0;}}
+  30   1        else if(b_PinNum == 0x13){if(P13 == 0){b_ReturnDat = 0;}}
+  31   1        else if(b_PinNum == 0x14){if(P14 == 0){b_ReturnDat = 0;}}
+  32   1        else if(b_PinNum == 0x15){if(P15 == 0){b_ReturnDat = 0;}}
+  33   1        else if(b_PinNum == 0x16){if(P16 == 0){b_ReturnDat = 0;}}
+  34   1        else if(b_PinNum == 0x17){if(P17 == 0){b_ReturnDat = 0;}}
+  35   1        else if(b_PinNum == 0x20){if(P20 == 0){b_ReturnDat = 0;}}
+  36   1        else if(b_PinNum == 0x21){if(P21 == 0){b_ReturnDat = 0;}}
+  37   1        else if(b_PinNum == 0x22){if(P22 == 0){b_ReturnDat = 0;}}
+  38   1        else if(b_PinNum == 0x23){if(P23 == 0){b_ReturnDat = 0;}}
+  39   1        else if(b_PinNum == 0x24){if(P24 == 0){b_ReturnDat = 0;}}
+  40   1        else if(b_PinNum == 0x25){if(P25 == 0){b_ReturnDat = 0;}}
+  41   1        else if(b_PinNum == 0x26){if(P26 == 0){b_ReturnDat = 0;}}
+  42   1        else if(b_PinNum == 0x27){if(P27 == 0){b_ReturnDat = 0;}}
+  43   1        else if(b_PinNum == 0x30){if(P30 == 0){b_ReturnDat = 0;}} 
+  44   1        else if(b_PinNum == 0x32){if(P32 == 0){b_ReturnDat = 0;}}
+  45   1        else if(b_PinNum == 0x33){if(P33 == 0){b_ReturnDat = 0;}}
+  46   1        else if(b_PinNum == 0x34){if(P34 == 0){b_ReturnDat = 0;}}
+  47   1        else if(b_PinNum == 0x35){if(P35 == 0){b_ReturnDat = 0;}}
+  48   1        else if(b_PinNum == 0x36){if(P36 == 0){b_ReturnDat = 0;}}
+  49   1        else if(b_PinNum == 0x37){if(P37 == 0){b_ReturnDat = 0;}} 
+  50   1        else if(b_PinNum == 0x40){if(P40 == 0){b_ReturnDat = 0;}}
+  51   1        else if(b_PinNum == 0x41){if(P41 == 0){b_ReturnDat = 0;}}
+  52   1        else if(b_PinNum == 0x42){if(P42 == 0){b_ReturnDat = 0;}}
+  53   1        else if(b_PinNum == 0x43){if(P43 == 0){b_ReturnDat = 0;}}
+  54   1        else if(b_PinNum == 0x44){if(P44 == 0){b_ReturnDat = 0;}}
+C51 COMPILER V9.59.0.0   IO                                                                08/26/2025 17:58:26 PAGE 2   
+
+  55   1        else if(b_PinNum == 0x45){if(P45 == 0){b_ReturnDat = 0;}}
+  56   1        else if(b_PinNum == 0x46){if(P46 == 0){b_ReturnDat = 0;}}
+  57   1        else if(b_PinNum == 0x47){if(P47 == 0){b_ReturnDat = 0;}}   
+  58   1        return b_ReturnDat;
+  59   1      }
+  60          /*==========================================================================================
+  61          函数: 
+  62            void Output(u8 b_PinNum, u8 b_Val)         
+  63          描述:   
+  64            指定口输出
+  65          参数: 
+  66            - b_PinNum        端口号
+  67              - 0x00        <>P00 
+  68              - 0x01        <>P01
+  69              - 0x02        <>P02
+  70              - ...
+  71            - b_Val         
+  72              - 1         <>高电平
+  73              - 0         <>低电平
+  74          返回: 
+  75          */
+  76          void Output(u8 b_PinNum, u8 b_Val){
+  77   1        if(b_PinNum == 0x00){
+  78   2          if(b_Val == 0){P00 = 0;}
+  79   2          else {P00 = 1;}
+  80   2        }
+  81   1        else if(b_PinNum == 0x01){
+  82   2          if(b_Val == 0){P01 = 0;}
+  83   2          else {P01 = 1;}
+  84   2        } 
+  85   1        else if(b_PinNum == 0x02){
+  86   2          if(b_Val == 0){P02 = 0;}
+  87   2          else {P02 = 1;}
+  88   2        }
+  89   1        else if(b_PinNum == 0x03){
+  90   2          if(b_Val == 0){P03 = 0;}
+  91   2          else {P03 = 1;}
+  92   2        }
+  93   1        else if(b_PinNum == 0x04){
+  94   2          if(b_Val == 0){P04 = 0;}
+  95   2          else {P04 = 1;}
+  96   2        }
+  97   1        else if(b_PinNum == 0x05){
+  98   2          if(b_Val == 0){P05 = 0;}
+  99   2          else {P05 = 1;}
+ 100   2        } 
+ 101   1        else if(b_PinNum == 0x06){
+ 102   2          if(b_Val == 0){P06 = 0;}
+ 103   2          else {P06 = 1;}
+ 104   2        }
+ 105   1        else if(b_PinNum == 0x07){
+ 106   2          if(b_Val == 0){P07 = 0;}
+ 107   2          else {P07 = 1;}
+ 108   2        }
+ 109   1        else if(b_PinNum == 0x10){
+ 110   2          if(b_Val == 0){P10 = 0;}
+ 111   2          else {P10 = 1;}
+ 112   2        }   
+ 113   1        else if(b_PinNum == 0x11){
+ 114   2          if(b_Val == 0){P11 = 0;}
+ 115   2          else {P11 = 1;}
+ 116   2        } 
+C51 COMPILER V9.59.0.0   IO                                                                08/26/2025 17:58:26 PAGE 3   
+
+ 117   1        else if(b_PinNum == 0x12){
+ 118   2          if(b_Val == 0){P12 = 0;}
+ 119   2          else {P12 = 1;}
+ 120   2        }
+ 121   1        else if(b_PinNum == 0x13){
+ 122   2          if(b_Val == 0){P13 = 0;}
+ 123   2          else {P13 = 1;}
+ 124   2        }
+ 125   1        else if(b_PinNum == 0x14){
+ 126   2          if(b_Val == 0){P14 = 0;}
+ 127   2          else {P14 = 1;}
+ 128   2        }
+ 129   1        else if(b_PinNum == 0x15){
+ 130   2          if(b_Val == 0){P15 = 0;}
+ 131   2          else {P15 = 1;}
+ 132   2        } 
+ 133   1        else if(b_PinNum == 0x16){
+ 134   2          if(b_Val == 0){P16 = 0;}
+ 135   2          else {P16 = 1;}
+ 136   2        }
+ 137   1        else if(b_PinNum == 0x17){
+ 138   2          if(b_Val == 0){P17 = 0;}
+ 139   2          else {P17 = 1;}
+ 140   2        } 
+ 141   1        else if(b_PinNum == 0x20){
+ 142   2          if(b_Val == 0){P20 = 0;}
+ 143   2          else {P20 = 1;}
+ 144   2        }   
+ 145   1        else if(b_PinNum == 0x21){
+ 146   2          if(b_Val == 0){P21 = 0;}
+ 147   2          else {P21 = 1;}
+ 148   2        } 
+ 149   1        else if(b_PinNum == 0x22){
+ 150   2          if(b_Val == 0){P22 = 0;}
+ 151   2          else {P22 = 1;}
+ 152   2        }
+ 153   1        else if(b_PinNum == 0x23){
+ 154   2          if(b_Val == 0){P23 = 0;}
+ 155   2          else {P23 = 1;}
+ 156   2        }
+ 157   1        else if(b_PinNum == 0x24){
+ 158   2          if(b_Val == 0){P24 = 0;}
+ 159   2          else {P24 = 1;}
+ 160   2        }
+ 161   1        else if(b_PinNum == 0x25){
+ 162   2          if(b_Val == 0){P25 = 0;}
+ 163   2          else {P25 = 1;}
+ 164   2        } 
+ 165   1        else if(b_PinNum == 0x26){
+ 166   2          if(b_Val == 0){P26 = 0;}
+ 167   2          else {P26 = 1;}
+ 168   2        }
+ 169   1        else if(b_PinNum == 0x27){
+ 170   2          if(b_Val == 0){P27 = 0;}
+ 171   2          else {P27 = 1;}
+ 172   2        }
+ 173   1        else if(b_PinNum == 0x30){
+ 174   2          if(b_Val == 0){P30 = 0;}
+ 175   2          else {P30 = 1;}
+ 176   2        } 
+ 177   1        else if(b_PinNum == 0x32){
+ 178   2          if(b_Val == 0){P32 = 0;}
+C51 COMPILER V9.59.0.0   IO                                                                08/26/2025 17:58:26 PAGE 4   
+
+ 179   2          else {P32 = 1;}
+ 180   2        }
+ 181   1        else if(b_PinNum == 0x33){
+ 182   2          if(b_Val == 0){P33 = 0;}
+ 183   2          else {P33 = 1;}
+ 184   2        }
+ 185   1        else if(b_PinNum == 0x34){
+ 186   2          if(b_Val == 0){P34 = 0;}
+ 187   2          else {P34 = 1;}
+ 188   2        }
+ 189   1        else if(b_PinNum == 0x35){
+ 190   2          if(b_Val == 0){P35 = 0;}
+ 191   2          else {P35 = 1;}
+ 192   2        } 
+ 193   1        else if(b_PinNum == 0x36){
+ 194   2          if(b_Val == 0){P36 = 0;}
+ 195   2          else {P36 = 1;}
+ 196   2        }
+ 197   1        else if(b_PinNum == 0x37){
+ 198   2          if(b_Val == 0){P37 = 0;}
+ 199   2          else {P37 = 1;}
+ 200   2        } 
+ 201   1        else if(b_PinNum == 0x40){
+ 202   2          if(b_Val == 0){P40 = 0;}
+ 203   2          else {P40 = 1;}
+ 204   2        }   
+ 205   1        else if(b_PinNum == 0x41){
+ 206   2          if(b_Val == 0){P41 = 0;}
+ 207   2          else {P41 = 1;}
+ 208   2        } 
+ 209   1        else if(b_PinNum == 0x42){
+ 210   2          if(b_Val == 0){P42 = 0;}
+ 211   2          else {P42 = 1;}
+ 212   2        }
+ 213   1        else if(b_PinNum == 0x43){
+ 214   2          if(b_Val == 0){P43 = 0;}
+ 215   2          else {P43 = 1;}
+ 216   2        }
+ 217   1        else if(b_PinNum == 0x44){
+ 218   2          if(b_Val == 0){P44 = 0;}
+ 219   2          else {P44 = 1;}
+ 220   2        }
+ 221   1        else if(b_PinNum == 0x45){
+ 222   2          if(b_Val == 0){P45 = 0;}
+ 223   2          else {P45 = 1;}
+ 224   2        } 
+ 225   1        else if(b_PinNum == 0x46){
+ 226   2          if(b_Val == 0){P46 = 0;}
+ 227   2          else {P46 = 1;}
+ 228   2        }
+ 229   1        else if(b_PinNum == 0x47){
+ 230   2          if(b_Val == 0){P47 = 0;}
+ 231   2          else {P47 = 1;}
+ 232   2        }   
+ 233   1      }
+ 234          
+ 235          
+ 236          
+ 237          
+ 238          
+ 239          
+ 240          
+C51 COMPILER V9.59.0.0   IO                                                                08/26/2025 17:58:26 PAGE 5   
+
+ 241          
+ 242          
+ 243          
+ 244          
+ 245          
+ 246          
+ 247          
+ 248          
+ 249          
+ 250          
+ 251          
+ 252          
+ 253          
+ 254          
+ 255          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1203    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

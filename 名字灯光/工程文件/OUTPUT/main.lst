@@ -1,0 +1,256 @@
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2025 17:58:27 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN ..\OUTPUT\main.obj
+COMPILER INVOKED BY: D:\keil\C51\BIN\C51.EXE ..\USER\main.c LARGE OPTIMIZE(9,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(..\O
+                    -UTPUT\main.lst) TABS(2) OBJECT(..\OUTPUT\main.obj)
+
+line level    source
+
+   1          /*==========================================================================================
+   2          设计者:
+   3                BLAZE
+   4          设计日期:
+   5                2016年3月4日
+   6          24Mhz晶振   
+   7          ==========================================================================================*/
+   8          /*头文件*/
+   9          #include "STC15F2KXX.H"                                             //芯片头文件                 
+  10          #include <intrins.h>                                              //公共函数
+  11          #include "TP.h"
+  12          #include "system.h"
+  13          #include "io.h"
+  14          #include "led.h"
+  15          #include "expand.h"
+  16          
+  17          
+  18          u8 xdata gb_TD10ms_WS2811_P1 = 0;
+  19          u8 xdata gb_TD10ms_WS2811_P2 = 0;
+  20          u8 xdata gb_TD10ms_WS2811_P3 = 0;
+  21          u8 xdata gb_TD10ms_WS2811_P4 = 0;
+  22          u8 xdata gb_TD10ms_Check1 = 0;
+  23          u8 xdata gb_TD10ms_Check2 = 0;
+  24          u8 xdata gb_TD10ms_Check3 = 0;
+  25          u8 xdata gb_TD10ms_Check4 = 0;
+  26          u8 xdata gb_TD10ms_Check5 = 0;
+  27          u8 xdata gb_TD10ms_Check6 = 0;
+  28          u8 xdata gb_TD10ms_CheckSum = 0;
+  29          u8 xdata gb_TD10ms_StatusSum = 0;
+  30          u16 xdata  gw_TD10ms_WS2811_StyleChange = 0;
+  31          
+  32          
+  33          //u8 Check_Input(void){
+  34          ////  u8 b_ReturnDat = 3;
+  35          ////  static u8 sb_Status1Sum = 0;
+  36          ////  static u8 sb_Status2Sum = 0;
+  37          ////  static u8 sb_Status3Sum = 0;
+  38          ////  //收到指令处理
+  39          ////  if(!gb_TD10ms_StatusSum){
+  40          ////    gb_TD10ms_StatusSum = 2;
+  41          ////    /*待机*/
+  42          ////    if((!TPIN_01) && (TPIN_02)){
+  43          ////      if(++sb_Status1Sum > 10){//持续0.2秒信号
+  44          ////        sb_Status1Sum = 0xA1;
+  45          ////      }
+  46          ////    }
+  47          ////    else{
+  48          ////      if(sb_Status1Sum == 0xA1){
+  49          ////        gb_TD10ms_WS2811_P1 = 0;//即时刷新灯光效果
+  50          ////        gb_TD10ms_WS2811_P2 = 0;//即时刷新灯光效果
+  51          ////        gb_TD10ms_WS2811_P3 = 0;//即时刷新灯光效果
+  52          ////        gb_TD10ms_WS2811_P4 = 0;//即时刷新灯光效果
+  53          ////      }
+  54          ////      sb_Status1Sum = 0;
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2025 17:58:27 PAGE 2   
+
+  55          ////    }
+  56          ////    /*中奖*/
+  57          ////    if((TPIN_01) && (!TPIN_02)){
+  58          ////      if(++sb_Status2Sum > 10){
+  59          ////        sb_Status2Sum = 0xA1;
+  60          ////      }
+  61          ////    }
+  62          ////    else{
+  63          ////      if(sb_Status2Sum == 0xA1){
+  64          ////        gb_TD10ms_WS2811_P1 = 0;//即时刷新灯光效果
+  65          ////        gb_TD10ms_WS2811_P2 = 0;//即时刷新灯光效果
+  66          ////        gb_TD10ms_WS2811_P3 = 0;//即时刷新灯光效果
+  67          ////        gb_TD10ms_WS2811_P4 = 0;//即时刷新灯光效果
+  68          ////      }     
+  69          ////      sb_Status2Sum = 0;
+  70          ////    }
+  71          ////    /*游戏*/
+  72          ////    if((TPIN_01) && (TPIN_02)){
+  73          ////      if(++sb_Status3Sum > 10){
+  74          ////        sb_Status3Sum = 0xA1;
+  75          ////      }
+  76          ////    }
+  77          ////    else{
+  78          ////      if(sb_Status3Sum == 0xA1){
+  79          ////        gb_TD10ms_WS2811_P1 = 0;//即时刷新灯光效果
+  80          ////        gb_TD10ms_WS2811_P2 = 0;//即时刷新灯光效果
+  81          ////        gb_TD10ms_WS2811_P3 = 0;//即时刷新灯光效果
+  82          ////        gb_TD10ms_WS2811_P4 = 0;//即时刷新灯光效果
+  83          ////      } 
+  84          ////      sb_Status3Sum = 0;
+  85          ////    }
+  86          ////  }
+  87          ////  if(sb_Status1Sum == 0xA1)b_ReturnDat = 1;
+  88          ////  else if(sb_Status2Sum == 0xA1)b_ReturnDat = 2;
+  89          ////  else if(sb_Status3Sum == 0xA1)b_ReturnDat = 3;
+  90          ////  return b_ReturnDat;
+  91          //}
+  92          
+  93          /*==========================================================================================
+  94          函数 
+  95            void main(void)
+  96          描述 
+  97            主函数
+  98          参数 
+  99            
+ 100          返回  
+ 101          */
+ 102          //u8 gb_TD1ms_Test =  0;
+ 103          
+ 104          void main(void){
+ 105   1      u8 xdata b_Step = 0;      
+ 106   1      u8 b_Din = 0;
+ 107   1      u8 b_TestCot = 0; 
+ 108   1      u8 b_Status = 1;  
+ 109   1      u8 b_StatusBP = 1;
+ 110   1      u8 b_Check01Sum = 0;
+ 111   1      u8 b_Check02Sum = 0;
+ 112   1      u8 b_Check03Sum = 0;
+ 113   1      u8 b_Check04Sum = 0;
+ 114   1      u8 b_Check05Sum = 0;
+ 115   1      u8 b_Check06Sum = 0;  
+ 116   1      u8 b_Status1Sum = 0;
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2025 17:58:27 PAGE 3   
+
+ 117   1      u8 b_Status2Sum = 0;
+ 118   1      u8 b_Status3Sum = 0;  
+ 119   1      u8 i = 0;
+ 120   1      u8 j = 0;
+ 121   1        u8 k = 20;
+ 122   1      IO_Init();//接口初始化
+ 123   1      Timer_Init();//定时器初始化 
+ 124   1      /*中断总开关*/
+ 125   1      EA = 1;//开中断 
+ 126   1      ET0 = 1;//允许定时器0中断
+ 127   1      //ET1 = 1;//允许定时器1中断
+ 128   1      //IE2 |= 0x04;//允许定时器2中断
+ 129   1      WS2811_1P_En();//开机初始化
+ 130   1      WS2811_1P_En();//开机初始化
+ 131   1      WS2811_4P_En();//开机初始化 
+ 132   1      b_Step = 0;
+ 133   1      TPOUT_TESTLED=0;
+ 134   1      while(1){
+ 135   2      
+ 136   2        if((!gb_TD10ms_WS2811_P4)&&(b_Step==0)){
+ 137   3          WS2811_blood_P4(3, 3,gpdw_White_low,0);
+ 138   3          b_Step=1;
+ 139   3          gb_TD10ms_WS2811_P4=10;
+ 140   3        }
+ 141   2        if((!gb_TD10ms_WS2811_P4)&&(b_Step==1)){
+ 142   3          WS2811_blood_P4(3, 2,gpdw_White_low,0);
+ 143   3          b_Step=2;
+ 144   3          gb_TD10ms_WS2811_P4=10;
+ 145   3        }
+ 146   2        if((!gb_TD10ms_WS2811_P4)&&(b_Step==2)){
+ 147   3          WS2811_blood_P4(3, 1,gpdw_White_low,0);
+ 148   3          b_Step=6;
+ 149   3          gb_TD10ms_WS2811_P4=10;
+ 150   3        }
+ 151   2        if((!gb_TD10ms_WS2811_P4)&&(b_Step==6)){
+ 152   3          WS2811_blood_P4(3, 0,gpdw_White_low,0);
+ 153   3          b_Step=3;
+ 154   3          gb_TD10ms_WS2811_P4=10;
+ 155   3        }
+ 156   2        if((!gb_TD10ms_WS2811_P4)&&(b_Step==3)){
+ 157   3          WS2811_blood1_P4(3, 3,gpdw_dark,0);
+ 158   3          b_Step=4;
+ 159   3          gb_TD10ms_WS2811_P4=10;
+ 160   3        }
+ 161   2        if((!gb_TD10ms_WS2811_P4)&&(b_Step==4)){
+ 162   3          WS2811_blood1_P4(3, 2,gpdw_dark,0);
+ 163   3          b_Step=5;
+ 164   3          gb_TD10ms_WS2811_P4=10;
+ 165   3        }
+ 166   2        if((!gb_TD10ms_WS2811_P4)&&(b_Step==5)){
+ 167   3          WS2811_blood1_P4(3, 1,gpdw_dark,0);
+ 168   3          b_Step=7;
+ 169   3          gb_TD10ms_WS2811_P4=10;
+ 170   3        }
+ 171   2        if((!gb_TD10ms_WS2811_P4)&&(b_Step==7)){
+ 172   3          WS2811_blood1_P4(3, 0,gpdw_dark,0);
+ 173   3          b_Step=0;
+ 174   3          gb_TD10ms_WS2811_P4=10;
+ 175   3        }
+ 176   2      }
+ 177   1      }
+ 178          
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2025 17:58:27 PAGE 4   
+
+ 179          
+ 180          
+ 181          
+ 182          
+ 183          
+ 184          
+ 185          
+ 186          
+ 187          /*==========================================================================================
+ 188          函数
+ 189            void Timer0_1ms(void)        
+ 190          描述  
+ 191            定时器0,1T模式,16位自动重装,1ms中断一次,高优先级
+ 192          参数 
+ 193          
+ 194          返回 
+ 195          */
+ 196          void Timer0_1ms(void) interrupt TIMER0_VECTOR
+ 197          { 
+ 198   1      //  if(gw_TD10ms_StyleChange)gw_TD10ms_StyleChange --;
+ 199   1        if(gb_TD10ms_WS2811_P1)gb_TD10ms_WS2811_P1 --;
+ 200   1        if(gb_TD10ms_WS2811_P2)gb_TD10ms_WS2811_P2 --;
+ 201   1        if(gb_TD10ms_WS2811_P3)gb_TD10ms_WS2811_P3 --;
+ 202   1        if(gb_TD10ms_WS2811_P4)gb_TD10ms_WS2811_P4 --;
+ 203   1        if(gw_TD10ms_WS2811_StyleChange)gw_TD10ms_WS2811_StyleChange --;
+ 204   1        if(gb_TD10ms_Check1)gb_TD10ms_Check1 --;
+ 205   1        if(gb_TD10ms_Check2)gb_TD10ms_Check2 --;
+ 206   1        if(gb_TD10ms_Check3)gb_TD10ms_Check3 --;
+ 207   1        if(gb_TD10ms_Check4)gb_TD10ms_Check4 --;
+ 208   1        if(gb_TD10ms_Check5)gb_TD10ms_Check5 --;
+ 209   1        if(gb_TD10ms_Check6)gb_TD10ms_Check6 --;
+ 210   1      //  if(gb_TD10ms_StatusSum)gb_TD10ms_StatusSum --;
+ 211   1        if(gb_TD10ms_CheckSum)gb_TD10ms_CheckSum --;
+ 212   1      }
+ 213          /*==========================================================================================
+ 214          函数
+ 215            void Timer1_10ms(void)         
+ 216          描述  
+ 217            定时器1,16位自动重装,10ms中断一次,低优先级
+ 218          参数 
+ 219          
+ 220          返回 
+ 221          */
+ 222          void Timer1_10ms(void) interrupt TIMER1_VECTOR
+ 223          {
+ 224   1      //  if(gw_TD10ms_StyleChange)gw_TD10ms_StyleChange --;
+ 225   1      } 
+ 226            
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    468    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     14      16
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
